@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.ExceptionServices;
 using TMPro;
 using UnityEngine;
 
@@ -9,11 +10,14 @@ public class MenuController : MonoBehaviour
     bool startTimer = false;
     public TMP_Text timerText;
     public GameObject timerPanel;
+    public GameObject firstPersonUi;
+    bool uiActive = false;
     // Start is called before the first frame update
     void Start()
     {
         startTimer = true;
         timerPanel.SetActive(true);
+        
     }
 
     // Update is called once per frame
@@ -48,6 +52,19 @@ public class MenuController : MonoBehaviour
         if (timerText != null)
         {
             timerText.text = string.Format("Time: {0:D2}:{1:D2}", minutes, seconds);
+        }
+    }
+    public void toggleFirstPersonUI()
+    {
+        if(uiActive)
+        {
+            firstPersonUi.SetActive(false);
+            uiActive = false;
+        }
+        else
+        {
+            firstPersonUi.SetActive(true);
+            uiActive = true;
         }
     }
 }

@@ -163,6 +163,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Track_Corner_90d_type_01_15x15m_free_obs
       objectReference: {fileID: 0}
+    - target: {fileID: 6328670885464780835, guid: dd0831f60632baf4492b92858d493b29, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
