@@ -39,7 +39,7 @@
                     "id": "e369b493-70ed-44a2-b2a9-caf18070cd04",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
-                    "processors": "Normalize(min=-1,max=1,zero=-1)",
+                    "processors": "Normalize(max=1)",
                     "groups": "Gamepad",
                     "action": "Accelerate",
                     "isComposite": false,
@@ -156,67 +156,23 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "Gamepad",
-                    "id": "dd42f293-1a7c-4518-bd4c-2c44b9a29188",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Turn",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "c0cd3db2-bda4-4c90-887e-355bb38c0820",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Turn",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "5a5ed19c-d329-4580-b580-99d4aba3b487",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Turn",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "c166fe77-7a09-496a-9058-bb177f26f16a",
-                    "path": "<Gamepad>/leftStick/left",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Turn",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "dcdde3a8-9589-4cdd-b2c2-654b6a691d40",
-                    "path": "<Gamepad>/leftStick/right",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Turn",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "",
                     "id": "a2a91946-bc6b-45ae-863b-429947816db2",
                     "path": "<Joystick>/stick",
                     "interactions": "",
                     "processors": "",
                     "groups": "Joystick",
+                    "action": "Turn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "aa43556f-202c-42b0-9570-1b4d1969c3a1",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
                     "action": "Turn",
                     "isComposite": false,
                     "isPartOfComposite": false
