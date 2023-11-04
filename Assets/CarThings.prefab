@@ -962,7 +962,7 @@ MonoBehaviour:
   turnInput: 0
   brakeInput: 0
   motorPower: 1000
-  brakePower: 5000
+  brakePower: 50000
   slipAngle: 0
   steeringCurve:
     serializedVersion: 2

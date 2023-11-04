@@ -82,9 +82,17 @@ public class CarControllerV2 : MonoBehaviour
     }
     void ApplyMotor()
     {
-
-        colliders.brWheel.motorTorque = motorPower * accelerateInput;
-        colliders.blWheel.motorTorque = motorPower * accelerateInput;
+        if (rb.velocity.magnitude <35)
+        {
+            colliders.brWheel.motorTorque = motorPower * accelerateInput;
+            colliders.blWheel.motorTorque = motorPower * accelerateInput;
+        }
+        else
+        {
+            colliders.brWheel.motorTorque = 0;
+            colliders.blWheel.motorTorque = 0;
+        }
+   
         Debug.Log(colliders.brWheel.motorTorque);
         Debug.Log(rb.velocity.magnitude);
 
