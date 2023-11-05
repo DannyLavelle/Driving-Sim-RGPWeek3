@@ -41,4 +41,9 @@ public class Menu : MonoBehaviour
     {
         SceneManager.LoadScene("Race1");
     }
+
+    public void Race2Load()
+    {
+        SceneManager.LoadScene("Race2");
+    }
 }
