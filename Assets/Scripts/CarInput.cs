@@ -53,6 +53,15 @@ public partial class @CarInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Camera Toggle"",
+                    ""type"": ""Button"",
+                    ""id"": ""ad2a04c3-f1da-4ba5-9f0b-bd6ba24bb26e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -198,6 +207,39 @@ public partial class @CarInput: IInputActionCollection2, IDisposable
                     ""action"": ""Turn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""67fb63f0-d38d-455d-87db-4490b52b9838"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Camera Toggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""216e69eb-ab60-44e3-969d-2e4cf7857bb4"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Camera Toggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""37fd35a1-bd96-47c9-b40b-f6eb31f93125"",
+                    ""path"": ""<Joystick>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Camera Toggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -225,6 +267,7 @@ public partial class @CarInput: IInputActionCollection2, IDisposable
         m_Drive_Accelerate = m_Drive.FindAction("Accelerate", throwIfNotFound: true);
         m_Drive_BrakePedal = m_Drive.FindAction("BrakePedal", throwIfNotFound: true);
         m_Drive_Turn = m_Drive.FindAction("Turn", throwIfNotFound: true);
+        m_Drive_CameraToggle = m_Drive.FindAction("Camera Toggle", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -289,6 +332,7 @@ public partial class @CarInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Drive_Accelerate;
     private readonly InputAction m_Drive_BrakePedal;
     private readonly InputAction m_Drive_Turn;
+    private readonly InputAction m_Drive_CameraToggle;
     public struct DriveActions
     {
         private @CarInput m_Wrapper;
@@ -296,6 +340,7 @@ public partial class @CarInput: IInputActionCollection2, IDisposable
         public InputAction @Accelerate => m_Wrapper.m_Drive_Accelerate;
         public InputAction @BrakePedal => m_Wrapper.m_Drive_BrakePedal;
         public InputAction @Turn => m_Wrapper.m_Drive_Turn;
+        public InputAction @CameraToggle => m_Wrapper.m_Drive_CameraToggle;
         public InputActionMap Get() { return m_Wrapper.m_Drive; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -314,6 +359,9 @@ public partial class @CarInput: IInputActionCollection2, IDisposable
             @Turn.started += instance.OnTurn;
             @Turn.performed += instance.OnTurn;
             @Turn.canceled += instance.OnTurn;
+            @CameraToggle.started += instance.OnCameraToggle;
+            @CameraToggle.performed += instance.OnCameraToggle;
+            @CameraToggle.canceled += instance.OnCameraToggle;
         }
 
         private void UnregisterCallbacks(IDriveActions instance)
@@ -327,6 +375,9 @@ public partial class @CarInput: IInputActionCollection2, IDisposable
             @Turn.started -= instance.OnTurn;
             @Turn.performed -= instance.OnTurn;
             @Turn.canceled -= instance.OnTurn;
+            @CameraToggle.started -= instance.OnCameraToggle;
+            @CameraToggle.performed -= instance.OnCameraToggle;
+            @CameraToggle.canceled -= instance.OnCameraToggle;
         }
 
         public void RemoveCallbacks(IDriveActions instance)
@@ -376,5 +427,6 @@ public partial class @CarInput: IInputActionCollection2, IDisposable
         void OnAccelerate(InputAction.CallbackContext context);
         void OnBrakePedal(InputAction.CallbackContext context);
         void OnTurn(InputAction.CallbackContext context);
+        void OnCameraToggle(InputAction.CallbackContext context);
     }
 }

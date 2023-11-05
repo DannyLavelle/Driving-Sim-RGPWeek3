@@ -3,21 +3,31 @@ using System.Collections.Generic;
 using System.Runtime.ExceptionServices;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem.HID;
+using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UIElements;
 
 public class MenuController : MonoBehaviour
 {
+    public int CurrentLevel;
     float timer = 0;
     bool startTimer = false;
     public TMP_Text timerText;
+    public TMP_Text winTimer;
     public GameObject timerPanel;
     public GameObject firstPersonUi;
+    public GameObject HUD;
+    public GameObject winPanel;
+    public GameObject BestText;
     bool uiActive = false;
+    bool IsGamePaused = false;
+
     // Start is called before the first frame update
     void Start()
     {
         startTimer = true;
         timerPanel.SetActive(true);
-        
+        ActivateHUD();
     }
 
     // Update is called once per frame
@@ -67,4 +77,68 @@ public class MenuController : MonoBehaviour
             uiActive = true;
         }
     }
+    void PauseControl()//Toggles Pause/Unpause
+    {
+        switch (IsGamePaused)
+        {
+            case false:
+            Time.timeScale = 0f;
+            IsGamePaused = true;
+            
+            RemoveHUD();
+            break;
+            case true:
+            Time.timeScale = 1f;
+            IsGamePaused = false;
+            
+            ActivateHUD();
+            break;
+        }
+    }
+    void RemoveHUD()
+    {
+        HUD.SetActive(false);
+    }
+    void ActivateHUD()
+    {
+        HUD.SetActive(true);
+    }
+    public void WinSequence()
+    {
+        int minutes = Mathf.FloorToInt(timer / 60f);
+        int seconds = Mathf.FloorToInt(timer % 60f);
+
+       
+        PauseControl();
+        winTimer.text = string.Format("Time: {0:D2}:{1:D2}", minutes, seconds);
+        
+        winPanel.SetActive(true);
+        saveScores();
+
+    }
+    void saveScores()
+    {
+        string nextLevelUnlocked = ("Level" + (CurrentLevel + 1) + "Unlocked");
+        string levelTime = ("Level" + CurrentLevel + "Time");
+        if(PlayerPrefs.GetInt(nextLevelUnlocked ) == 1)
+        {
+            if (timer < PlayerPrefs.GetFloat(levelTime))//Check if time beats his pb
+            {
+
+                PlayerPrefs.SetFloat(levelTime, timer);
+                BestText.SetActive(true);
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetFloat(levelTime, timer);
+            
+            PlayerPrefs.SetInt(nextLevelUnlocked, 1);
+        }
+       
+
+        PlayerPrefs.Save();
+    }
 }
+
+

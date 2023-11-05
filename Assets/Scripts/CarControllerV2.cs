@@ -93,8 +93,8 @@ public class CarControllerV2 : MonoBehaviour
             colliders.blWheel.motorTorque = 0;
         }
    
-        Debug.Log(colliders.brWheel.motorTorque);
-        Debug.Log(rb.velocity.magnitude);
+        //Debug.Log(colliders.brWheel.motorTorque);
+        //Debug.Log(rb.velocity.magnitude);
 
     }
     void ApplyBrake()

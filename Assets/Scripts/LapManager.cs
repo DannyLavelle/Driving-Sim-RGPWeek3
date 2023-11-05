@@ -1,16 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
 public class LapManager : MonoBehaviour
 {
-    public int maxCheckpoints;
+    
     public int maxLaps;
-    int currentLaps = 0;
-    int currentCheckpoints = 0;
+    public int currentLaps = 0;
+    public int currentCheckpoints = 0;
     public GameObject[] Checkpoints;
+    public GameObject menu;
+    public TMP_Text Laps;
+    public int maxCheckpoints;
 
+    private void Start()
+    {
+        updateLap();
+        maxCheckpoints = Checkpoints.Length;
+    }
     public void increaseCheckPoints()
     {
         currentCheckpoints++;
@@ -18,8 +27,9 @@ public class LapManager : MonoBehaviour
     public void increaseLaps()
     {
         currentLaps++;
+        updateLap();
     }
-    private void OnTriggerEnter3D(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
       if(other.gameObject.tag == "Player" && currentCheckpoints == maxCheckpoints)
         {
@@ -31,8 +41,14 @@ public class LapManager : MonoBehaviour
             }
             if (currentLaps == maxLaps)
             {
-                //win logic here 
+                MenuController win = menu.GetComponent<MenuController>();
+                win.WinSequence();
             }
         }
+    }
+
+    public void updateLap()
+    {
+        Laps.text = ("Lap : " + currentLaps + "/" + maxLaps);
     }
 }
