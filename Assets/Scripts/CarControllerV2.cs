@@ -55,8 +55,13 @@ public class CarControllerV2 : MonoBehaviour
     }
     void ToggleCameraScript(InputAction.CallbackContext context)
     {
-        CameraToggle toggle = CamToggle.GetComponent<CameraToggle>();
-        toggle.ToggleCamera();
+        MenuController pausepanel = Menu.GetComponent<MenuController>();
+        if(pausepanel.IsGamePaused == false)
+        {
+            CameraToggle toggle = CamToggle.GetComponent<CameraToggle>();
+            toggle.ToggleCamera();
+        }
+      
     }
     void PauseGame(InputAction.CallbackContext context)
     {

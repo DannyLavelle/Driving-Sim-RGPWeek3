@@ -23,7 +23,7 @@ public class MenuController : MonoBehaviour
     public GameObject BestText;
     public Button resumeButton;
     bool uiActive = false;
-    bool IsGamePaused = false;
+    public bool IsGamePaused = false;
 
     // Start is called before the first frame update
     void Start()
@@ -135,7 +135,7 @@ public class MenuController : MonoBehaviour
         else
         {
             PlayerPrefs.SetFloat(levelTime, timer);
-            
+            BestText.SetActive(true);
             PlayerPrefs.SetInt(nextLevelUnlocked, 1);
         }
        
