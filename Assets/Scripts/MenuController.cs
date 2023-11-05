@@ -18,6 +18,7 @@ public class MenuController : MonoBehaviour
     public GameObject firstPersonUi;
     public GameObject HUD;
     public GameObject winPanel;
+    public GameObject PausePanel;
     public GameObject BestText;
     bool uiActive = false;
     bool IsGamePaused = false;
@@ -138,6 +139,21 @@ public class MenuController : MonoBehaviour
        
 
         PlayerPrefs.Save();
+    }
+    public void CheckPause()
+    {
+        if (IsGamePaused == false )
+        {
+            PauseControl();
+            PausePanel.SetActive(true);
+
+        }
+        else if (IsGamePaused == true && PausePanel.activeSelf)
+        {
+            PauseControl();
+            PausePanel.SetActive(false);
+        }
+
     }
 }
 

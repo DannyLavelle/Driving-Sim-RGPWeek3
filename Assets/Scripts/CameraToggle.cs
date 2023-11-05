@@ -8,7 +8,11 @@ public class CameraToggle : MonoBehaviour
     public GameObject firstPerson;
     public GameObject firstPersonUI;
     public GameObject thirdPerson;
-    bool isFirstPerson = true;
+    bool isFirstPerson = false;
+    private void Start()
+    {
+        ToggleCamera();
+    }
     public void ToggleCamera()
     {
         
