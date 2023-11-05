@@ -9,20 +9,22 @@ public class CameraToggle : MonoBehaviour
     public GameObject firstPersonUI;
     public GameObject thirdPerson;
     bool isFirstPerson = true;
-    public void ToggleCamera(InputAction.CallbackContext context)
+    public void ToggleCamera()
     {
+        
         if(isFirstPerson)
         {
             firstPerson.SetActive(false);
             firstPersonUI.SetActive(false);
             thirdPerson.SetActive(true);
+            isFirstPerson = false;
         }
         else
         {
             thirdPerson.SetActive(false);
             firstPerson.SetActive(true);
             firstPersonUI.SetActive(true);
-            
+            isFirstPerson = true;
         }
     }
 }

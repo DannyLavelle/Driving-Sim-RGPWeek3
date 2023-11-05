@@ -7,9 +7,10 @@ using UnityEngine.InputSystem;
 
 public class CarControllerV2 : MonoBehaviour
 {
-    InputAction accelerate, brakePedal, turn;
+    InputAction accelerate, brakePedal, turn,cameraToggle;
     public WheelColliders colliders;
     public WheelMeshes meshes;
+    public GameObject CamToggle;
     public  float accelerateInput;
     public  float turnInput;
     public float brakeInput;
@@ -30,6 +31,8 @@ public class CarControllerV2 : MonoBehaviour
         GameManager.InputManager.inputActions.Drive.Accelerate.Enable();
         GameManager.InputManager.inputActions.Drive.BrakePedal.Enable();
         GameManager.InputManager.inputActions.Drive.Turn.Enable();
+        GameManager.InputManager.inputActions.Drive.CameraToggle.Enable();
+        
     }
     private void OnEnable()
     {
@@ -41,8 +44,16 @@ public class CarControllerV2 : MonoBehaviour
 
         brakePedal = GameManager.InputManager.inputActions.Drive.BrakePedal;
         brakePedal.Enable();
-    }
 
+        cameraToggle = GameManager.InputManager.inputActions.Drive.CameraToggle;
+        cameraToggle.Enable();
+        cameraToggle.performed += ToggleCameraScript;
+    }
+    void ToggleCameraScript(InputAction.CallbackContext context)
+    {
+        CameraToggle toggle = CamToggle.GetComponent<CameraToggle>();
+        toggle.ToggleCamera();
+    }
     // Update is called once per frame
     void Update()
     {
