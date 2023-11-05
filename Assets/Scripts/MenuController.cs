@@ -5,7 +5,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem.HID;
 using UnityEngine.SocialPlatforms.Impl;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class MenuController : MonoBehaviour
     public GameObject winPanel;
     public GameObject PausePanel;
     public GameObject BestText;
+    public Button resumeButton;
     bool uiActive = false;
     bool IsGamePaused = false;
 
@@ -146,6 +148,7 @@ public class MenuController : MonoBehaviour
         {
             PauseControl();
             PausePanel.SetActive(true);
+            resumeButton.Select();
 
         }
         else if (IsGamePaused == true && PausePanel.activeSelf)
@@ -154,6 +157,12 @@ public class MenuController : MonoBehaviour
             PausePanel.SetActive(false);
         }
 
+    }
+
+    public void OpenMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(0);
     }
 }
 
