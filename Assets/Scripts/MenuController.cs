@@ -28,6 +28,8 @@ public class MenuController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        IsGamePaused = true;
+        PauseControl();
         startTimer = true;
         timerPanel.SetActive(true);
         ActivateHUD();

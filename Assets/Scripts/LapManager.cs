@@ -33,7 +33,7 @@ public class LapManager : MonoBehaviour
     {
       if(other.gameObject.tag == "Player" && currentCheckpoints == maxCheckpoints)
         {
-            currentLaps++;
+           increaseLaps();
             currentCheckpoints = 0;
             for (int i = 0; i < Checkpoints.Length; i++)
             {
@@ -49,6 +49,7 @@ public class LapManager : MonoBehaviour
 
     public void updateLap()
     {
+        Debug.Log("lAPuPDATING");
         Laps.text = ("Lap : " + currentLaps + "/" + maxLaps);
     }
 }
